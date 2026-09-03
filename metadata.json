@@ -1,0 +1,6 @@
+{
+  "name": "Đại Lý Thuế Thành Phố - Hệ Thống Điều Hành Nghiệp Vụ & Khách Hàng",
+  "description": "Hệ thống quản lý công việc và quy trình nghiệp vụ chuyên sâu cho Công Ty TNHH Đại Lý Thuế Thành Phố - Đồng Hành Pháp Lý Doanh Nghiệp",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
