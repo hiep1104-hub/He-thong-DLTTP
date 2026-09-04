@@ -836,9 +836,8 @@ export class PermissionService {
   static canViewCustomerFinancials(user: User | null | undefined): boolean {
     if (!user) return false;
     if (user.role === 'ADMIN' || user.role === 'BAN_GIAM_DOC') return true;
-    if (user.role === 'TRUONG_PHONG') return true; // Trưởng phòng HCNS, Kế toán thuế, Kinh doanh...
-    if (user.department === 'KINH_DOANH_CSKH') return true;
-    return this.can(user, 'customer:view_financials') || this.can(user, 'contract:manage_debt');
+    if (user.role === 'TRUONG_PHONG' && user.department === 'HANH_CHINH_NHAN_SU') return true;
+    return false;
   }
 
   /**

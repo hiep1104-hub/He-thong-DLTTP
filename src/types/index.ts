@@ -669,7 +669,7 @@ export interface LeaveRequest {
 
 export type BusinessTripType =
   | 'KHACH_HANG' // Trụ sở Doanh nghiệp / Khách hàng
-  | 'CO_QUAN_THUE' // Chi cục Thuế / Cục Thuế
+  | 'CO_QUAN_THUE' // Thuế cơ sở / Cục Thuế
   | 'BHXH_DKKD' // Cơ quan BHXH / Sở KH&ĐT (ĐKKD)
   | 'NGAN_HANG_TOA_AN' // Ngân hàng / Tín dụng / Tòa án / Công chứng
   | 'KHAO_SAT_THUC_DIA' // Khảo sát hiện trường / Thẩm định doanh nghiệp
@@ -726,7 +726,7 @@ export interface BusinessTrip {
   customerId?: string;
   customerName?: string;
   customerTaxCode?: string;
-  destination: string; // Địa điểm cụ thể (Địa chỉ / Tên Chi cục Thuế)
+  destination: string; // Địa điểm cụ thể (Địa chỉ / Tên Thuế cơ sở)
   startDate: string; // YYYY-MM-DD
   endDate: string; // YYYY-MM-DD
   timeSlot: BusinessTripTimeSlot;

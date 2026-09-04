@@ -395,7 +395,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({
           </div>
           
           <div className="flex items-center space-x-4 text-slate-500">
-            {currentUser?.role !== 'NHAN_VIEN' && (
+            {canViewFinancials && (
               <span>
                 Tổng nợ đọng: <strong className="text-red-600 font-bold">{formatCurrency(filteredCustomers.reduce((s, c) => s + (c.debtAmount || 0), 0))}</strong>
               </span>

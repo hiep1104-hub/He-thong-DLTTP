@@ -477,11 +477,11 @@ export const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
   };
 
   return (
-    <div className={`fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs flex items-center justify-center ${isFullscreen ? 'p-0' : 'p-2 sm:p-4'}`}>
-      <div className={`bg-white dark:bg-slate-900 shadow-2xl flex flex-col overflow-hidden transition-all duration-150 ${
+    <div className={`fixed inset-0 z-50 overflow-hidden bg-slate-950/70 backdrop-blur-sm flex justify-end`}>
+      <div className={`bg-white dark:bg-slate-900 shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-right duration-300 border-l border-slate-200 dark:border-slate-800 ${
         isFullscreen
-          ? 'w-screen h-screen max-w-none max-h-none rounded-none'
-          : 'w-full max-w-[98vw] 2xl:max-w-7xl max-h-[96vh] h-[92vh] rounded-2xl border border-slate-200 dark:border-slate-800'
+          ? 'w-full h-full'
+          : 'w-full max-w-5xl h-full'
       }`}>
         
         {/* Header */}
@@ -727,22 +727,24 @@ export const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
           >
             Hợp Đồng & Quản Trị Rủi Ro
           </button>
-          <button
-            onClick={() => setActiveTab('PAYMENT_CYCLE_DEBT')}
-            className={`py-3 px-3 border-b-2 font-bold whitespace-nowrap transition-all flex items-center space-x-1.5 ${
-              activeTab === 'PAYMENT_CYCLE_DEBT'
-                ? 'border-emerald-600 text-emerald-600 dark:text-emerald-400'
-                : 'border-transparent text-slate-500 hover:text-slate-800'
-            }`}
-          >
-            <CreditCard className="h-3.5 w-3.5" />
-            <span>Chu Kỳ Thanh Toán & Công Nợ</span>
-            {customer.debtAmount > 0 && (
-              <span className="px-1.5 py-0.2 bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300 rounded-full font-bold text-[10px]">
-                {formatCurrency(customer.debtAmount)}
-              </span>
-            )}
-          </button>
+          {canViewFinancials && (
+            <button
+              onClick={() => setActiveTab('PAYMENT_CYCLE_DEBT')}
+              className={`py-3 px-3 border-b-2 font-bold whitespace-nowrap transition-all flex items-center space-x-1.5 ${
+                activeTab === 'PAYMENT_CYCLE_DEBT'
+                  ? 'border-emerald-600 text-emerald-600 dark:text-emerald-400'
+                  : 'border-transparent text-slate-500 hover:text-slate-800'
+              }`}
+            >
+              <CreditCard className="h-3.5 w-3.5" />
+              <span>Chu Kỳ Thanh Toán & Công Nợ</span>
+              {customer.debtAmount > 0 && (
+                <span className="px-1.5 py-0.2 bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300 rounded-full font-bold text-[10px]">
+                  {formatCurrency(customer.debtAmount)}
+                </span>
+              )}
+            </button>
+          )}
         </div>
 
         {/* Content */}

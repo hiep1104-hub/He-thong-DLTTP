@@ -191,8 +191,8 @@ export const BusinessTripDetailModal: React.FC<BusinessTripDetailModalProps> = (
 
   return (
     <>
-      <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6">
-        <div className="relative w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col max-h-[92vh]">
+      <div className="fixed inset-0 z-50 overflow-hidden bg-slate-900/60 backdrop-blur-sm flex justify-end">
+        <div className="relative w-full max-w-4xl h-full bg-white dark:bg-slate-900 shadow-2xl border-l border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col animate-in slide-in-from-right duration-300">
           
           {/* Header Banner */}
           <div className="px-6 py-4 bg-slate-900 text-white border-b border-slate-800 flex items-center justify-between shrink-0">
@@ -450,7 +450,7 @@ export const BusinessTripDetailModal: React.FC<BusinessTripDetailModalProps> = (
                       Danh Mục Nghiệp Vụ & Hồ Sơ Chứng Từ Cần Thu Thập
                     </h4>
                     <p className="text-[11px] text-blue-700 dark:text-blue-300">
-                      Đánh dấu các đầu việc đã hoàn tất khi làm việc tại Chi cục Thuế hoặc Trụ sở khách hàng.
+                      Đánh dấu các đầu việc đã hoàn tất khi làm việc tại Thuế cơ sở hoặc Trụ sở khách hàng.
                     </p>
                   </div>
                   <div className="text-right">

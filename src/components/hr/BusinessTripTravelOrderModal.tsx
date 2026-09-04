@@ -194,7 +194,7 @@ export const BusinessTripTravelOrderModal: React.FC<BusinessTripTravelOrderModal
                     {trip.transportation === 'GRAB_TAXI' ? 'Taxi/Grab' : trip.transportation === 'XE_MAY_CA_NHAN' ? 'Xe máy' : 'Xe công ty'}
                   </td>
                   <td className="border border-slate-300 dark:border-slate-700 print:border-slate-400 p-2.5 h-20 align-top text-[11px] text-slate-400 italic">
-                    (Ký, ghi rõ họ tên & đóng dấu xác nhận của Chi cục Thuế / Khách hàng)
+                    (Ký, ghi rõ họ tên & đóng dấu xác nhận của Thuế cơ sở / Khách hàng)
                   </td>
                 </tr>
                 <tr>

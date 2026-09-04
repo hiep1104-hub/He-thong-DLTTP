@@ -417,6 +417,37 @@ GIÁM ĐỐC ĐIỀU HÀNH ĐẠI LÝ THUẾ THÀNH PHỐ`;
           <div className="flex items-center space-x-2">
             <button
               onClick={() => {
+                const csvContent = [
+                  ['Mã KH', 'Tên Khách Hàng', 'MST', 'Gói Dịch Vụ', 'Tổng Phí (VNĐ)', 'Tổng Nợ (VNĐ)', 'Hạn Thu Cuối', 'Trạng Thái', 'Chu Kỳ', 'Liên Hệ'].join(','),
+                  ...filteredCustomers.map(c => [
+                    c.code,
+                    `"${c.name}"`,
+                    c.taxCode,
+                    `"${c.servicePackage}"`,
+                    c.monthlyFee,
+                    c.debtAmount,
+                    c.debtDueDate,
+                    `"${DEBT_AGING_LABELS[c.debtAgingGroup || 'IN_GRACE']?.label}"`,
+                    `"${BILLING_CYCLE_LABELS[c.billingCycle || 'HANG_THANG']?.label}"`,
+                    `"${c.contactPhone} - ${c.contactName}"`
+                  ].join(','))
+                ].join('\n');
+                const blob = new Blob([new Uint8Array([0xEF, 0xBB, 0xBF]), csvContent], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `Bao_Cao_Cong_No_${formatDate(CURRENT_SYSTEM_DATE).replace(/\//g, '_')}.csv`;
+                a.click();
+                URL.revokeObjectURL(url);
+                showToast('Đã kết xuất báo cáo công nợ thành công');
+              }}
+              className="flex items-center space-x-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition-all shadow-sm cursor-pointer"
+            >
+              <Download className="h-3.5 w-3.5" />
+              <span>Kết Xuất CSV</span>
+            </button>
+            <button
+              onClick={() => {
                 setSearchKeyword('');
                 setSelectedCycle('ALL');
                 setSelectedAgingGroup('ALL');
@@ -426,7 +457,7 @@ GIÁM ĐỐC ĐIỀU HÀNH ĐẠI LÝ THUẾ THÀNH PHỐ`;
             >
               Đặt lại bộ lọc
             </button>
-            <span className="text-xs text-slate-400 dark:text-slate-500 font-medium">
+            <span className="text-xs text-slate-400 dark:text-slate-500 font-medium hidden sm:inline">
               Hệ thống: {formatDate(CURRENT_SYSTEM_DATE)}
             </span>
           </div>

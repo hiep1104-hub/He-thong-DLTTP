@@ -53,6 +53,7 @@ export const TemplatesView: React.FC<TemplatesViewProps> = ({
 
   // RBAC Permission Check: Only Ban Giám Đốc and Admin can edit/add/delete templates
   const canManageTemplates = PermissionService.canManageTemplates(currentUser);
+  const canViewFinancials = PermissionService.canViewCustomerFinancials(currentUser);
 
   // Filter adhoc services
   const filteredAdHocServices = adHocServices.filter(service => {
@@ -321,9 +322,11 @@ export const TemplatesView: React.FC<TemplatesViewProps> = ({
                         </div>
 
                         <div className="text-right shrink-0">
-                          <span className="text-xs font-black text-blue-600 dark:text-blue-400 block">
-                            {service.feeDisplay}
-                          </span>
+                          {canViewFinancials && (
+                            <span className="text-xs font-black text-blue-600 dark:text-blue-400 block">
+                              {service.feeDisplay}
+                            </span>
+                          )}
                           <span className="text-[10px] text-slate-400 block mt-0.5">
                             {service.executionType}
                           </span>
@@ -402,12 +405,14 @@ export const TemplatesView: React.FC<TemplatesViewProps> = ({
 
                   {/* Price & Execution Banner */}
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-3.5 bg-blue-50/50 dark:bg-blue-950/20 rounded-xl border border-blue-100 dark:border-blue-900/40 text-xs">
-                    <div>
-                      <span className="text-[10px] text-slate-500 block uppercase font-semibold">Phí dịch vụ niêm yết</span>
-                      <span className="text-base font-black text-blue-600 dark:text-blue-400">
-                        {selectedAdHoc.feeDisplay}
-                      </span>
-                    </div>
+                    {canViewFinancials && (
+                      <div>
+                        <span className="text-[10px] text-slate-500 block uppercase font-semibold">Phí dịch vụ niêm yết</span>
+                        <span className="text-base font-black text-blue-600 dark:text-blue-400">
+                          {selectedAdHoc.feeDisplay}
+                        </span>
+                      </div>
+                    )}
 
                     <div>
                       <span className="text-[10px] text-slate-500 block uppercase font-semibold">Hình thức thực hiện</span>

@@ -184,7 +184,7 @@ export const DuplicateScannerModal: React.FC<DuplicateScannerModalProps> = ({
                               <div className="text-[11px] text-slate-500 mt-1 space-y-0.5">
                                 <div>Phụ trách: <strong>{cust.assignedStaffName || 'Chưa gán'}</strong></div>
                                 <div>Địa chỉ: <span className="truncate">{cust.address}</span></div>
-                                <div>Gói: {cust.servicePackage} • {cust.monthlyFee?.toLocaleString('vi-VN')} đ</div>
+                                <div>Gói: {cust.servicePackage}</div>
                               </div>
                             </div>
 

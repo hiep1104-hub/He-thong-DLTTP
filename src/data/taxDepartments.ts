@@ -1,0 +1,50 @@
+export const COMMON_TAX_DEPARTMENTS = [
+  // Cấp Tỉnh/Thành Phố (Tên gọi mới từ 2025/2026 - thay cho Cục Thuế / Thuế cơ sở khu vực cũ)
+  "Thuế TP. Hà Nội",
+  "Thuế TP. Hồ Chí Minh",
+  "Thuế TP. Đà Nẵng",
+  "Thuế TP. Hải Phòng",
+  "Thuế TP. Cần Thơ",
+  "Thuế tỉnh Bình Dương",
+  "Thuế tỉnh Đồng Nai",
+  "Thuế tỉnh Bắc Ninh",
+  "Thuế tỉnh Quảng Ninh",
+  "Thuế tỉnh Thanh Hóa",
+  "Thuế tỉnh Nghệ An",
+  
+  // Cấp Cơ Sở - TP. Hà Nội (Tên gọi mới thay cho Thuế cơ sở Quận/Huyện cũ)
+  "Thuế cơ sở 1 TP. Hà Nội",
+  "Thuế cơ sở 2 TP. Hà Nội",
+  "Thuế cơ sở 3 TP. Hà Nội",
+  "Thuế cơ sở 4 TP. Hà Nội",
+  "Thuế cơ sở 5 TP. Hà Nội",
+  "Thuế cơ sở 6 TP. Hà Nội",
+  "Thuế cơ sở 7 TP. Hà Nội",
+  "Thuế cơ sở 8 TP. Hà Nội",
+  "Thuế cơ sở 9 TP. Hà Nội",
+  "Thuế cơ sở 10 TP. Hà Nội",
+  "Thuế cơ sở 11 TP. Hà Nội",
+  "Thuế cơ sở 12 TP. Hà Nội",
+
+  // Cấp Cơ Sở - TP. Hồ Chí Minh (Tên gọi mới thay cho Thuế cơ sở Quận/Huyện cũ)
+  "Thuế cơ sở 1 TP. Hồ Chí Minh",
+  "Thuế cơ sở 2 TP. Hồ Chí Minh",
+  "Thuế cơ sở 3 TP. Hồ Chí Minh",
+  "Thuế cơ sở 4 TP. Hồ Chí Minh",
+  "Thuế cơ sở 5 TP. Hồ Chí Minh",
+  "Thuế cơ sở 6 TP. Hồ Chí Minh",
+  "Thuế cơ sở 7 TP. Hồ Chí Minh",
+  "Thuế cơ sở 8 TP. Hồ Chí Minh",
+  "Thuế cơ sở 9 TP. Hồ Chí Minh",
+  "Thuế cơ sở 10 TP. Hồ Chí Minh",
+  "Thuế cơ sở 11 TP. Hồ Chí Minh",
+  "Thuế cơ sở 12 TP. Hồ Chí Minh",
+  
+  // Cấp Cơ Sở - Các Tỉnh/Thành khác
+  "Thuế cơ sở 1 tỉnh Bình Dương",
+  "Thuế cơ sở 2 tỉnh Bình Dương",
+  "Thuế cơ sở 1 tỉnh Đồng Nai",
+  "Thuế cơ sở 2 tỉnh Đồng Nai",
+  "Thuế cơ sở 1 TP. Đà Nẵng",
+  "Thuế cơ sở 2 TP. Đà Nẵng",
+];

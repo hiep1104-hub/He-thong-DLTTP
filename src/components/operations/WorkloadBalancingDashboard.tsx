@@ -603,7 +603,7 @@ export const WorkloadBalancingDashboard: React.FC<WorkloadBalancingDashboardProp
                         </div>
                         <div>
                           <div className="font-semibold text-slate-900 dark:text-white text-xs">{cust.name}</div>
-                          <div className="text-[10px] text-slate-500 font-mono">MST: {cust.taxCode} • Phí: {(cust.monthlyFee || 2500000).toLocaleString('vi-VN')} đ/tháng</div>
+                          <div className="text-[10px] text-slate-500 font-mono">MST: {cust.taxCode}</div>
                         </div>
                       </div>
 

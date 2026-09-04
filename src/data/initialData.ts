@@ -186,7 +186,7 @@ export const INITIAL_TEMPLATES: ChecklistTemplate[] = [
     title: 'Xử lý Thông báo & Giải trình Rủi ro Cơ quan Thuế',
     department: 'KE_TOAN_THUE',
     category: 'THUE_KE_TOAN',
-    description: 'Quy trình tiếp nhận công văn/thông báo kiểm tra giải trình của Chi cục Thuế, rà soát hồ sơ và soạn thảo văn bản giải trình.',
+    description: 'Quy trình tiếp nhận công văn/thông báo kiểm tra giải trình của Thuế cơ sở, rà soát hồ sơ và soạn thảo văn bản giải trình.',
     defaultPriority: 'KHAN_CAP',
     defaultRiskLevel: 'RUI_RO_THUE_PHAP_LY',
     isTaxObligation: true,

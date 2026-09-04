@@ -7,8 +7,8 @@ import { DuplicateScannerModal } from './components/common/DuplicateScannerModal
 import { NavigationTabs, ActiveTabType } from './components/common/NavigationTabs';
 import { ExecutiveDashboard } from './components/dashboard/ExecutiveDashboard';
 import { TasksHubView } from './components/tasks/TasksHubView';
-import { TaskDetailModal } from './components/tasks/TaskDetailModal';
-import { TaskCreateModal } from './components/tasks/TaskCreateModal';
+import { TaskDetailModal } from './components/tasks/TaskWorkspace';
+import { TaskCreateModal } from './components/tasks/TaskWorkspace';
 import { CustomerList } from './components/customers/CustomerList';
 import { CustomerDetailModal } from './components/customers/CustomerDetailModal';
 import { CustomerCreateModal } from './components/customers/CustomerCreateModal';

@@ -170,7 +170,7 @@ export const BusinessTripCreateModal: React.FC<BusinessTripCreateModalProps> = (
       }
       if (!title) {
         if (tripType === 'CO_QUAN_THUE') {
-          setTitle(`Làm việc Chi cục Thuế về hồ sơ ${cust.name}`);
+          setTitle(`Làm việc Thuế cơ sở về hồ sơ ${cust.name}`);
         } else if (tripType === 'KHACH_HANG') {
           setTitle(`Công tác thực địa & thu thập chứng từ tại ${cust.name}`);
         } else if (tripType === 'BHXH_DKKD') {
@@ -247,8 +247,8 @@ export const BusinessTripCreateModal: React.FC<BusinessTripCreateModalProps> = (
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6">
-      <div className="relative w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col max-h-[92vh]">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-slate-900/60 backdrop-blur-sm flex justify-end">
+      <div className="relative w-full max-w-3xl h-full bg-white dark:bg-slate-900 shadow-2xl border-l border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col animate-in slide-in-from-right duration-300">
         
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white shrink-0">
@@ -261,7 +261,7 @@ export const BusinessTripCreateModal: React.FC<BusinessTripCreateModalProps> = (
                 Đăng Ký Lịch Công Tác Thực Địa & Cơ Quan Thuế
               </h3>
               <p className="text-xs text-blue-100">
-                Lập kế hoạch làm việc tại Chi cục Thuế, Khách hàng, Cơ quan BHXH & Xin cấp Giấy đi đường
+                Lập kế hoạch làm việc tại Thuế cơ sở, Khách hàng, Cơ quan BHXH & Xin cấp Giấy đi đường
               </p>
             </div>
           </div>
@@ -295,7 +295,7 @@ export const BusinessTripCreateModal: React.FC<BusinessTripCreateModalProps> = (
                       if (!title && selectedCustomerId) {
                         const c = customers.find(x => x.id === selectedCustomerId);
                         if (c) {
-                          if (opt.value === 'CO_QUAN_THUE') setTitle(`Làm việc Chi cục Thuế về hồ sơ ${c.name}`);
+                          if (opt.value === 'CO_QUAN_THUE') setTitle(`Làm việc Thuế cơ sở về hồ sơ ${c.name}`);
                           else if (opt.value === 'KHACH_HANG') setTitle(`Công tác thực địa & kiểm tra chứng từ tại ${c.name}`);
                         }
                       }
@@ -393,7 +393,7 @@ export const BusinessTripCreateModal: React.FC<BusinessTripCreateModalProps> = (
                 type="text"
                 value={destination}
                 onChange={e => setDestination(e.target.value)}
-                placeholder="VD: Chi cục Thuế Quận 1 / Trụ sở Công ty ABC..."
+                placeholder="VD: Thuế cơ sở 2 TP. Hồ Chí Minh / Trụ sở Công ty ABC..."
                 className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-semibold focus:ring-2 focus:ring-blue-500"
                 required
               />
@@ -512,7 +512,7 @@ export const BusinessTripCreateModal: React.FC<BusinessTripCreateModalProps> = (
                 rows={2}
                 value={purpose}
                 onChange={e => setPurpose(e.target.value)}
-                placeholder="Mô tả cụ thể nội dung trao đổi với Chi cục Thuế / Khách hàng, các tài liệu cần thu thập..."
+                placeholder="Mô tả cụ thể nội dung trao đổi với Thuế cơ sở / Khách hàng, các tài liệu cần thu thập..."
                 className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-medium focus:ring-2 focus:ring-blue-500"
                 required
               />

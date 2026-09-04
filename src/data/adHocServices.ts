@@ -36,7 +36,7 @@ export const AD_HOC_SERVICES: AdHocServiceItem[] = [
     suggestedChecklist: [
       { title: 'Kiểm tra địa chỉ mới không nằm trong căn hộ chung cư cấm kinh doanh', required: true },
       { title: 'Hợp đồng thuê địa điểm mới & giấy tờ pháp lý chủ nhà', required: true },
-      { title: 'Chốt nghĩa vụ thuế với Chi cục Thuế cũ (nếu chuyển quận)', required: true },
+      { title: 'Chốt nghĩa vụ thuế với Thuế cơ sở cũ (nếu chuyển quận)', required: true },
       { title: 'Cập nhật địa chỉ trên chữ ký số & hóa đơn điện tử', required: true },
       { title: 'Treo biển hiệu công ty tại trụ sở mới', required: true },
     ],
@@ -203,12 +203,12 @@ export const AD_HOC_SERVICES: AdHocServiceItem[] = [
     description: 'Thủ tục chấm dứt hoạt động chi nhánh (chốt nghĩa vụ thuế) hoặc chấm dứt hoạt động địa điểm kinh doanh.',
     suggestedWorkflow: [
       { name: '1. Soạn Quyết định chấm dứt hoạt động chi nhánh/ĐĐKD', isMandatory: true, requiredEvidence: false },
-      { name: '2. Quyết toán thuế & chốt nghĩa vụ thuế chi nhánh tại Chi cục Thuế quản lý', isMandatory: true, requiredEvidence: true },
+      { name: '2. Quyết toán thuế & chốt nghĩa vụ thuế chi nhánh tại Thuế cơ sở quản lý', isMandatory: true, requiredEvidence: true },
       { name: '3. Nộp hồ sơ chấm dứt hoạt động tại Sở KH&ĐT', isMandatory: true, requiredEvidence: true },
       { name: '4. Nhận Thông báo chấm dứt hoạt động chi nhánh/ĐĐKD', isMandatory: true, requiredEvidence: true },
     ],
     suggestedChecklist: [
-      { title: 'Xác nhận hoàn thành nghĩa vụ thuế của Chi cục Thuế quản lý chi nhánh', required: true },
+      { title: 'Xác nhận hoàn thành nghĩa vụ thuế của Thuế cơ sở quản lý chi nhánh', required: true },
       { title: 'Hủy con dấu chi nhánh (nếu có)', required: true },
     ],
   },
@@ -280,7 +280,7 @@ export const AD_HOC_SERVICES: AdHocServiceItem[] = [
     ],
     suggestedChecklist: [
       { title: 'Biên bản thanh lý tài sản và thanh toán hết các khoản nợ', required: true },
-      { title: 'Thông báo khóa MST của Chi cục Thuế', required: true },
+      { title: 'Thông báo khóa MST của Thuế cơ sở', required: true },
       { title: 'Xác nhận không nợ thuế Hải quan', required: true },
       { title: 'Xác nhận đóng tài khoản ngân hàng', required: true },
     ],
@@ -558,7 +558,7 @@ export const AD_HOC_SERVICES: AdHocServiceItem[] = [
     defaultRiskLevel: 'CAO',
     description: 'Làm việc với cơ quan thuế để đối chiếu sổ bộ thuế, thanh toán hết các khoản thuế nợ/phạt và chốt nghĩa vụ thuế doanh nghiệp.',
     suggestedWorkflow: [
-      { name: '1. Tra cứu thông tin nợ thuế trên hệ thống TMS và sổ bộ Chi cục Thuế', isMandatory: true, requiredEvidence: false },
+      { name: '1. Tra cứu thông tin nợ thuế trên hệ thống TMS và sổ bộ Thuế cơ sở', isMandatory: true, requiredEvidence: false },
       { name: '2. Hướng dẫn DN nộp đủ số tiền thuế nợ, tiền phạt và tiền chậm nộp', isMandatory: true, requiredEvidence: true },
       { name: '3. Xin văn bản xác nhận hoàn tất toàn bộ nghĩa vụ thuế từ CQT', isMandatory: true, requiredEvidence: true },
     ],
@@ -651,7 +651,7 @@ export const AD_HOC_SERVICES: AdHocServiceItem[] = [
     suggestedWorkflow: [
       { name: '1. Rà soát quyết định cưỡng chế thi hành quyết định hành chính về quản lý thuế', isMandatory: true, requiredEvidence: true },
       { name: '2. Lập phương án nộp thuế nợ / bảo lãnh nợ thuế ngân hàng', isMandatory: true, requiredEvidence: true },
-      { name: '3. Làm việc với Chi cục Thuế để ban hành Quyết định chấm dứt hiệu lực cưỡng chế hóa đơn', isMandatory: true, requiredEvidence: true },
+      { name: '3. Làm việc với Thuế cơ sở để ban hành Quyết định chấm dứt hiệu lực cưỡng chế hóa đơn', isMandatory: true, requiredEvidence: true },
     ],
     suggestedChecklist: [
       { title: 'Thanh toán dứt điểm số tiền thuế bị cưỡng chế', required: true },
@@ -763,7 +763,7 @@ export const AD_HOC_SERVICES: AdHocServiceItem[] = [
     department: 'KE_TOAN_THUE',
     defaultPriority: 'TRUNG_BINH',
     defaultRiskLevel: 'BINH_THUONG',
-    description: 'Thủ tục xin Giấy xác nhận không nợ thuế tại Chi cục Thuế và Cục Hải quan phục vụ đấu thầu hoặc vay vốn ngân hàng.',
+    description: 'Thủ tục xin Giấy xác nhận không nợ thuế tại Thuế cơ sở và Cục Hải quan phục vụ đấu thầu hoặc vay vốn ngân hàng.',
     suggestedWorkflow: [
       { name: '1. Đối chiếu nghĩa vụ thuế trên ứng dụng Thuế điện tử và TMS', isMandatory: true, requiredEvidence: false },
       { name: '2. Soạn Đơn đề nghị xác nhận nghĩa vụ thuế với NSNN gửi cơ quan thuế', isMandatory: true, requiredEvidence: true },
@@ -789,7 +789,7 @@ export const AD_HOC_SERVICES: AdHocServiceItem[] = [
     suggestedWorkflow: [
       { name: '1. Rà soát sổ bộ thuế và toàn bộ tờ khai quyết toán thuế các năm', isMandatory: true, requiredEvidence: false },
       { name: '2. Nộp văn bản đề nghị xác nhận hoàn thành nghĩa vụ thuế', isMandatory: true, requiredEvidence: true },
-      { name: '3. Nhận văn bản trả lời chính thức của Chi cục Thuế/Cục Thuế', isMandatory: true, requiredEvidence: true },
+      { name: '3. Nhận văn bản trả lời chính thức của Thuế cơ sở/Cục Thuế', isMandatory: true, requiredEvidence: true },
     ],
     suggestedChecklist: [
       { title: 'Không còn tồn đọng nợ thuế và nợ tiền phạt chậm nộp', required: true },
@@ -944,7 +944,7 @@ export const AD_HOC_SERVICES: AdHocServiceItem[] = [
     suggestedWorkflow: [
       { name: '1. Rà soát Hợp đồng thuê nhà xưởng/kho bãi và điều khoản chi phí điện nước, quản lý', isMandatory: true, requiredEvidence: false },
       { name: '2. Lập bộ hồ sơ khai thuế cho thuê tài sản (Mẫu 01/TTS)', isMandatory: true, requiredEvidence: true },
-      { name: '3. Nộp hồ sơ tại Chi cục Thuế quản lý địa bàn bất động sản tọa lạc', isMandatory: true, requiredEvidence: true },
+      { name: '3. Nộp hồ sơ tại Thuế cơ sở quản lý địa bàn bất động sản tọa lạc', isMandatory: true, requiredEvidence: true },
     ],
     suggestedChecklist: [
       { title: 'Giấy tờ chứng minh quyền sở hữu hoặc quyền sử dụng kho xưởng', required: true },
@@ -1076,7 +1076,7 @@ export const AD_HOC_SERVICES: AdHocServiceItem[] = [
     suggestedWorkflow: [
       { name: '1. Tiếp nhận Biên bản thanh lý hợp đồng cho thuê tài sản', isMandatory: true, requiredEvidence: true },
       { name: '2. Soạn thông báo chấm dứt hợp đồng và hồ sơ điều chỉnh giảm số thuế phải nộp', isMandatory: true, requiredEvidence: true },
-      { name: '3. Nộp hồ sơ và nhận xác nhận từ Chi cục Thuế', isMandatory: true, requiredEvidence: true },
+      { name: '3. Nộp hồ sơ và nhận xác nhận từ Thuế cơ sở', isMandatory: true, requiredEvidence: true },
     ],
     suggestedChecklist: [
       { title: 'Biên bản thanh lý hợp đồng ghi rõ ngày bàn giao mặt bằng/tài sản thực tế', required: true },

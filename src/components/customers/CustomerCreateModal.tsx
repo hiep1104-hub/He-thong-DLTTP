@@ -90,6 +90,8 @@ interface CustomerCreateModalProps {
   onUpdateCustomer?: (updatedCustomer: Customer) => void;
 }
 
+import { COMMON_TAX_DEPARTMENTS } from '../../data/taxDepartments';
+
 export const CustomerCreateModal: React.FC<CustomerCreateModalProps> = ({
   users,
   currentUser,
@@ -99,6 +101,7 @@ export const CustomerCreateModal: React.FC<CustomerCreateModalProps> = ({
   onUpdateCustomer,
 }) => {
   const isEditing = Boolean(editingCustomer);
+  const canViewFinancials = PermissionService.canViewCustomerFinancials(currentUser);
 
   // =========================================================================
   // 0. NATURE OF SERVICE INTAKE (Phân loại dịch vụ tiếp nhận)
@@ -121,7 +124,7 @@ export const CustomerCreateModal: React.FC<CustomerCreateModalProps> = ({
   const [contactPerson, setContactPerson] = useState(editingCustomer?.contactPerson || '');
   const [phone, setPhone] = useState(editingCustomer?.phone || '');
   const [email, setEmail] = useState(editingCustomer?.email || '');
-  const [taxDepartment, setTaxDepartment] = useState(editingCustomer?.taxDepartment || 'Chi cục Thuế Khu Vực / TP. Hà Nội');
+  const [taxDepartment, setTaxDepartment] = useState(editingCustomer?.taxDepartment || 'Thuế cơ sở 2 TP. Hồ Chí Minh');
 
   // Staff assignment & Risk
   const workloadSummaries = useMemo(() => {
@@ -554,7 +557,9 @@ export const CustomerCreateModal: React.FC<CustomerCreateModalProps> = ({
         : (servicePackage.trim() || 'Đại lý thuế trọn gói'),
       monthlyFee: isAdHocOnly ? 0 : (Number(monthlyFee) || 0),
       vatType: isAdHocOnly ? undefined : vatType,
-      debtAmount: isEditing && editingCustomer ? (editingCustomer.debtAmount || 0) : (isAdHocOnly ? remainingAdHocDebt : 0),
+      debtAmount: isEditing && editingCustomer 
+        ? (editingCustomer.debtAmount || 0) 
+        : (isAdHocOnly ? remainingAdHocDebt : (Number(monthlyFee) || 0) + remainingAdHocDebt),
       paymentDueDay: isEditing && editingCustomer?.paymentDueDay ? editingCustomer.paymentDueDay : 10,
       paymentTermDays: isEditing && editingCustomer?.paymentTermDays ? editingCustomer.paymentTermDays : 10,
       creditLimit: isEditing && editingCustomer?.creditLimit ? editingCustomer.creditLimit : 15000000,
@@ -699,8 +704,8 @@ export const CustomerCreateModal: React.FC<CustomerCreateModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl w-full max-w-5xl max-h-[94vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-slate-950/70 backdrop-blur-sm flex justify-end">
+      <div className="bg-white dark:bg-slate-900 shadow-2xl w-full max-w-4xl h-full flex flex-col overflow-hidden animate-in slide-in-from-right duration-300 border-l border-slate-200 dark:border-slate-800">
         
         {/* Header */}
         <div className="p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800 bg-slate-50/90 dark:bg-slate-850 flex items-center justify-between">
@@ -909,11 +914,17 @@ export const CustomerCreateModal: React.FC<CustomerCreateModalProps> = ({
                 </label>
                 <input
                   type="text"
+                  list="tax-departments-list"
                   value={taxDepartment}
                   onChange={(e) => setTaxDepartment(e.target.value)}
-                  placeholder="Chi cục Thuế Quận/Huyện..."
+                  placeholder="Chọn hoặc nhập tên Thuế cơ sở/Cục Thuế..."
                   className="w-full px-3 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg font-medium"
                 />
+                <datalist id="tax-departments-list">
+                  {COMMON_TAX_DEPARTMENTS.map(dept => (
+                    <option key={dept} value={dept} />
+                  ))}
+                </datalist>
               </div>
 
               <div>
@@ -1263,43 +1274,47 @@ export const CustomerCreateModal: React.FC<CustomerCreateModalProps> = ({
                 )}
 
                 {/* THÔNG SỐ ĐƠN GIÁ, THUẾ VAT & KỲ THUẾ */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
+                <div className={`grid grid-cols-1 gap-3 pt-2 ${canViewFinancials ? 'sm:grid-cols-2 lg:grid-cols-4' : 'sm:grid-cols-2'}`}>
                   
                   {/* Phí hàng tháng */}
-                  <div>
-                    <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
-                      Phí Dịch Vụ Định Kỳ (VNĐ/tháng) <span className="text-red-500">*</span>
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="number"
-                        value={monthlyFee}
-                        onChange={(e) => setMonthlyFee(Number(e.target.value))}
-                        step={100000}
-                        className="w-full px-3 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl font-mono font-extrabold text-emerald-600 dark:text-emerald-400 text-sm focus:ring-2 focus:ring-blue-500"
-                        required
-                      />
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400">
-                        đ/tháng
-                      </span>
+                  {canViewFinancials && (
+                    <div>
+                      <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                        Phí Dịch Vụ Định Kỳ (VNĐ/tháng) <span className="text-red-500">*</span>
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="number"
+                          value={monthlyFee}
+                          onChange={(e) => setMonthlyFee(Number(e.target.value))}
+                          step={100000}
+                          className="w-full px-3 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl font-mono font-extrabold text-emerald-600 dark:text-emerald-400 text-sm focus:ring-2 focus:ring-blue-500"
+                          required
+                        />
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400">
+                          đ/tháng
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   {/* Lựa chọn VAT Dropdown */}
-                  <div>
-                    <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
-                      Tùy Chọn Thuế VAT <span className="text-red-500">*</span>
-                    </label>
-                    <select
-                      value={vatType}
-                      onChange={(e) => setVatType(e.target.value as VatType)}
-                      className="w-full px-3 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-blue-500"
-                    >
-                      <option value="CHUA_VAT">Chưa gồm VAT (+10% VAT)</option>
-                      <option value="DA_CO_VAT">Đã có VAT (Đã gồm 10%)</option>
-                      <option value="KHONG_VAT">Không VAT (Không chịu thuế)</option>
-                    </select>
-                  </div>
+                  {canViewFinancials && (
+                    <div>
+                      <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                        Tùy Chọn Thuế VAT <span className="text-red-500">*</span>
+                      </label>
+                      <select
+                        value={vatType}
+                        onChange={(e) => setVatType(e.target.value as VatType)}
+                        className="w-full px-3 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-blue-500"
+                      >
+                        <option value="CHUA_VAT">Chưa gồm VAT (+10% VAT)</option>
+                        <option value="DA_CO_VAT">Đã có VAT (Đã gồm 10%)</option>
+                        <option value="KHONG_VAT">Không VAT (Không chịu thuế)</option>
+                      </select>
+                    </div>
+                  )}
 
                   {/* Kỳ kê khai thuế */}
                   <div>
@@ -1351,30 +1366,32 @@ export const CustomerCreateModal: React.FC<CustomerCreateModalProps> = ({
                 </div>
 
                 {/* Tính toán hiển thị chi tiết giá trị thanh toán & tiền thuế VAT */}
-                <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 bg-emerald-50/80 dark:bg-emerald-950/30 rounded-xl border border-emerald-200/80 dark:border-emerald-900/60 text-xs">
-                  <div className="flex items-center space-x-2 text-emerald-800 dark:text-emerald-300 font-medium">
-                    {vatType === 'CHUA_VAT' && (
-                      <span>🏷️ Giá trước thuế: <strong>{formatCurrency(monthlyFee)}</strong>/tháng</span>
-                    )}
-                    {vatType === 'DA_CO_VAT' && (
-                      <span>🏷️ Giá trọn gói đã gồm VAT: <strong>{formatCurrency(monthlyFee)}</strong>/tháng</span>
-                    )}
-                    {vatType === 'KHONG_VAT' && (
-                      <span>🏷️ Giá trọn gói không chịu thuế GTGT: <strong>{formatCurrency(monthlyFee)}</strong>/tháng</span>
-                    )}
+                {canViewFinancials && (
+                  <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 bg-emerald-50/80 dark:bg-emerald-950/30 rounded-xl border border-emerald-200/80 dark:border-emerald-900/60 text-xs">
+                    <div className="flex items-center space-x-2 text-emerald-800 dark:text-emerald-300 font-medium">
+                      {vatType === 'CHUA_VAT' && (
+                        <span>🏷️ Giá trước thuế: <strong>{formatCurrency(monthlyFee)}</strong>/tháng</span>
+                      )}
+                      {vatType === 'DA_CO_VAT' && (
+                        <span>🏷️ Giá trọn gói đã gồm VAT: <strong>{formatCurrency(monthlyFee)}</strong>/tháng</span>
+                      )}
+                      {vatType === 'KHONG_VAT' && (
+                        <span>🏷️ Giá trọn gói không chịu thuế GTGT: <strong>{formatCurrency(monthlyFee)}</strong>/tháng</span>
+                      )}
+                    </div>
+                    <div className="font-mono font-bold text-emerald-700 dark:text-emerald-400">
+                      {vatType === 'CHUA_VAT' && (
+                        <span>Tổng xuất hóa đơn: <strong>{formatCurrency(monthlyFee * 1.1)}</strong>/tháng <span className="text-[11px] font-normal text-emerald-600 dark:text-emerald-400/80">(VAT 10%: +{formatCurrency(monthlyFee * 0.1)})</span></span>
+                      )}
+                      {vatType === 'DA_CO_VAT' && (
+                        <span>Tiền trước thuế: {formatCurrency(Math.round(monthlyFee / 1.1))} <span className="text-[11px] font-normal text-emerald-600 dark:text-emerald-400/80">(VAT 10%: {formatCurrency(monthlyFee - Math.round(monthlyFee / 1.1))})</span></span>
+                      )}
+                      {vatType === 'KHONG_VAT' && (
+                        <span>Tổng thu: <strong>{formatCurrency(monthlyFee)}</strong>/tháng (0% VAT)</span>
+                      )}
+                    </div>
                   </div>
-                  <div className="font-mono font-bold text-emerald-700 dark:text-emerald-400">
-                    {vatType === 'CHUA_VAT' && (
-                      <span>Tổng xuất hóa đơn: <strong>{formatCurrency(monthlyFee * 1.1)}</strong>/tháng <span className="text-[11px] font-normal text-emerald-600 dark:text-emerald-400/80">(VAT 10%: +{formatCurrency(monthlyFee * 0.1)})</span></span>
-                    )}
-                    {vatType === 'DA_CO_VAT' && (
-                      <span>Tiền trước thuế: {formatCurrency(Math.round(monthlyFee / 1.1))} <span className="text-[11px] font-normal text-emerald-600 dark:text-emerald-400/80">(VAT 10%: {formatCurrency(monthlyFee - Math.round(monthlyFee / 1.1))})</span></span>
-                    )}
-                    {vatType === 'KHONG_VAT' && (
-                      <span>Tổng thu: <strong>{formatCurrency(monthlyFee)}</strong>/tháng (0% VAT)</span>
-                    )}
-                  </div>
-                </div>
+                )}
 
               </div>
 

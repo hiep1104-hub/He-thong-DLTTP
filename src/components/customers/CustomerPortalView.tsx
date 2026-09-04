@@ -247,7 +247,7 @@ export const CustomerPortalView: React.FC<CustomerPortalViewProps> = ({
                     <span className="text-slate-400">Đại diện pháp luật:</span> <span className="font-semibold text-slate-900 dark:text-white">{portalData.customer.contactPerson || 'Ông/Bà Giám Đốc'}</span>
                   </div>
                   <div>
-                    <span className="text-slate-400">Cơ quan thuế quản lý:</span> <span className="font-semibold text-slate-900 dark:text-white">{portalData.customer.taxDepartment || 'Chi cục Thuế Quận'}</span>
+                    <span className="text-slate-400">Cơ quan thuế quản lý:</span> <span className="font-semibold text-slate-900 dark:text-white">{portalData.customer.taxDepartment || 'Thuế cơ sở 2 TP. Hồ Chí Minh'}</span>
                   </div>
                   <div>
                     <span className="text-slate-400">Gói dịch vụ:</span> <span className="font-semibold text-blue-600 dark:text-blue-400">{portalData.serviceContract.servicePackage}</span>

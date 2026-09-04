@@ -205,7 +205,7 @@ export const BusinessTripManager: React.FC<BusinessTripManagerProps> = ({
               Đăng Ký & Quản Lý Lịch Công Tác Thực Địa
             </h1>
             <p className="text-xs text-slate-300 mt-0.5">
-              Điều phối làm việc tại Chi cục Thuế, Khách hàng, BHXH, cấp Giấy đi đường và quyết toán chi phí công tác
+              Điều phối làm việc tại Thuế cơ sở, Khách hàng, BHXH, cấp Giấy đi đường và quyết toán chi phí công tác
             </p>
           </div>
         </div>

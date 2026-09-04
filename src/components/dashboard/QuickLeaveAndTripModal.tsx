@@ -176,11 +176,11 @@ export const QuickLeaveAndTripModal: React.FC<QuickLeaveAndTripModalProps> = ({
 
   // --- BUSINESS TRIP FORM STATE ---
   const [tripType, setTripType] = useState<BusinessTripType>('CO_QUAN_THUE');
-  const [tripTitle, setTripTitle] = useState('Làm việc Chi cục Thuế - Giải trình số liệu tờ khai');
+  const [tripTitle, setTripTitle] = useState('Làm việc Thuế cơ sở - Giải trình số liệu tờ khai');
   const [tripCustomerId, setTripCustomerId] = useState<string>(() => allCustomers[0]?.id || '');
   const [customerSearchQuery, setCustomerSearchQuery] = useState('');
   const [isCustomerSelectorExpanded, setIsCustomerSelectorExpanded] = useState(false);
-  const [tripDestination, setTripDestination] = useState('Chi cục Thuế Quận 1, TP. Hồ Chí Minh');
+  const [tripDestination, setTripDestination] = useState('Thuế cơ sở 2 TP. Hồ Chí Minh');
   const [tripStartDate, setTripStartDate] = useState(CURRENT_SYSTEM_DATE);
   const [tripEndDate, setTripEndDate] = useState(CURRENT_SYSTEM_DATE);
   const [tripTimeSlot, setTripTimeSlot] = useState<BusinessTripTimeSlot>('SANG');
@@ -328,8 +328,8 @@ export const QuickLeaveAndTripModal: React.FC<QuickLeaveAndTripModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in-50 zoom-in-95 duration-150">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-slate-900/70 backdrop-blur-sm flex justify-end">
+      <div className="bg-white dark:bg-slate-900 shadow-2xl w-full max-w-4xl h-full flex flex-col overflow-hidden animate-in slide-in-from-right duration-300 border-l border-slate-200 dark:border-slate-800">
         
         {/* MODAL HEADER */}
         <div className="p-5 sm:p-6 bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 text-white border-b border-slate-800 flex items-center justify-between">
@@ -590,8 +590,8 @@ export const QuickLeaveAndTripModal: React.FC<QuickLeaveAndTripModalProps> = ({
                           setTripType(key);
                           const c = selectedCustomer || allCustomers.find(item => item.id === tripCustomerId);
                           if (key === 'CO_QUAN_THUE') {
-                            setTripTitle(c ? `Làm việc Chi cục Thuế về hồ sơ ${c.name}` : 'Làm việc Chi cục Thuế - Giải trình số liệu tờ khai');
-                            setTripDestination(c?.taxDepartment || 'Chi cục Thuế Quận 1, TP. Hồ Chí Minh');
+                            setTripTitle(c ? `Làm việc Thuế cơ sở về hồ sơ ${c.name}` : 'Làm việc Thuế cơ sở - Giải trình số liệu tờ khai');
+                            setTripDestination(c?.taxDepartment || 'Thuế cơ sở 2 TP. Hồ Chí Minh');
                           } else if (key === 'KHACH_HANG') {
                             setTripTitle(c ? `Làm việc tại trụ sở ${c.name}` : 'Làm việc tại trụ sở Doanh nghiệp');
                             setTripDestination(c?.address || 'Trụ sở khách hàng');
@@ -639,7 +639,7 @@ export const QuickLeaveAndTripModal: React.FC<QuickLeaveAndTripModalProps> = ({
                   <div className="sm:col-span-5 relative">
                     <input
                       type="text"
-                      placeholder="🔍 Tìm nhanh: MST, Tên Cty, Chi cục Thuế..."
+                      placeholder="🔍 Tìm nhanh: MST, Tên Cty, Thuế cơ sở..."
                       value={customerSearchQuery}
                       onChange={e => setCustomerSearchQuery(e.target.value)}
                       className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-medium focus:ring-2 focus:ring-blue-500/20"

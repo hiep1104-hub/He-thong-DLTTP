@@ -65,6 +65,8 @@ export const CycleRenewalCenterModal: React.FC<CycleRenewalCenterModalProps> = (
   // Success toast message
   const [actionSuccessMsg, setActionSuccessMsg] = useState<string | null>(null);
 
+  const canViewFinancials = PermissionService.canViewCustomerFinancials(currentUser);
+
   // Master customer & employee data
   const customers = useMemo(() => storageService.getCustomers(), [actionSuccessMsg]);
   const employees = useMemo(() => storageService.getEmployees(), [actionSuccessMsg]);
@@ -613,21 +615,23 @@ export const CycleRenewalCenterModal: React.FC<CycleRenewalCenterModalProps> = (
                 </div>
               </div>
 
-              <div>
-                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
-                  Phí Dịch Vụ Mới (VNĐ/tháng)
-                </label>
-                <input
-                  type="number"
-                  value={renewMonthlyFee}
-                  onChange={(e) => setRenewMonthlyFee(Number(e.target.value))}
-                  step={100000}
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg font-mono font-bold text-emerald-600 text-sm"
-                />
-                <span className="text-[10px] text-slate-500 mt-0.5 block">
-                  {formatCurrency(renewMonthlyFee)} / tháng
-                </span>
-              </div>
+              {canViewFinancials && (
+                <div>
+                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                    Phí Dịch Vụ Mới (VNĐ/tháng)
+                  </label>
+                  <input
+                    type="number"
+                    value={renewMonthlyFee}
+                    onChange={(e) => setRenewMonthlyFee(Number(e.target.value))}
+                    step={100000}
+                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg font-mono font-bold text-emerald-600 text-sm"
+                  />
+                  <span className="text-[10px] text-slate-500 mt-0.5 block">
+                    {formatCurrency(renewMonthlyFee)} / tháng
+                  </span>
+                </div>
+              )}
 
               <div>
                 <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
